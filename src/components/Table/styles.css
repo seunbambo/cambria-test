@@ -1,0 +1,18 @@
+table {
+  color: #5f5e5e !important;
+}
+
+.table-heading {
+  font-weight: 500;
+}
+
+.table-heading-data {
+  border-bottom: 2px solid orange;
+  margin-right: 30px;
+  padding-right: 30px;
+}
+
+.details-column {
+  line-height: 1.3rem;
+  font-size: 0.9rem;
+}
