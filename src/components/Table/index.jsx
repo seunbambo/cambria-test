@@ -25,7 +25,7 @@ const Table = () => {
         zipCode: 'Franklin, TN 37067',
       },
       amount: '2213.00',
-      status: 'Order Received',
+      status: 'Pending',
     },
     {
       orderId: '32342342423434212',
@@ -43,19 +43,21 @@ const Table = () => {
   return (
     <div>
       <table className='table table-striped table-hover'>
-        <thead className='table-heading'>
-          <td className='table-heading-data'>Date</td>
-          <td className='table-heading-data'>Details</td>
-          <td className='table-heading-data'>Amount</td>
-          <td className='table-heading-data'>Status</td>
+        <thead>
+          <tr className='table-heading'>
+            <th className='table-heading-data'>Date</th>
+            <th className='table-heading-data'>Details</th>
+            <th className='table-heading-data'>Amount</th>
+            <th className='table-heading-data'>Status</th>
+          </tr>
         </thead>
         <tbody>
           {orders.map((order) => {
             return (
-              <tr>
+              <tr key={orders.orderId}>
                 <td>
                   <span
-                    className='fa fa-calendar-minus'
+                    className='fas fa-calendar-minus'
                     style={{ color: '#000' }}
                   ></span>
                   {order.dateCreated}
@@ -78,7 +80,9 @@ const Table = () => {
                   </div>
                 </td>
                 <td>${order.amount}</td>
-                <td>{order.status}</td>
+                <td>
+                  <span className='badge badge-warning'>{order.status}</span>
+                </td>
               </tr>
             );
           })}

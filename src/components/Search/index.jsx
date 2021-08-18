@@ -21,7 +21,7 @@ const Search = () => {
             id='basic-addon2'
             style={{ background: 'var(--customSecondary)', color: '#ffffff' }}
           >
-            <span class='fa fa-search'></span>
+            <span className='fa fa-search'></span>
             {'   '}
             <b>SEARCH</b>
           </span>
