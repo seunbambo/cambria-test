@@ -1,47 +1,23 @@
-import React from 'react';
-import './styles.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { TableWrapper } from './TableWrapper.js';
 
 const Table = () => {
-  const orders = [
-    {
-      orderId: '32342342423434212',
-      dateCreated: 'Aug 2021',
-      orderType: 'Slab',
-      address: {
-        street: '1, Surface LLC',
-        city: '305 Seaboard Lane, Suit 319',
-        zipCode: 'Franklin, TN 37067',
-      },
-      amount: '2213.00',
-      status: 'Order Received',
-    },
-    {
-      orderId: '32342342423434212',
-      dateCreated: 'Aug 2021',
-      orderType: 'Slab',
-      address: {
-        street: '1, Surface LLC',
-        city: '305 Seaboard Lane, Suit 319',
-        zipCode: 'Franklin, TN 37067',
-      },
-      amount: '2213.00',
-      status: 'Pending',
-    },
-    {
-      orderId: '32342342423434212',
-      dateCreated: 'Aug 2021',
-      orderType: 'Slab',
-      address: {
-        street: '1, Surface LLC',
-        city: '305 Seaboard Lane, Suit 319',
-        zipCode: 'Franklin, TN 37067',
-      },
-      amount: '2213.00',
-      status: 'Order Received',
-    },
-  ];
+  const [orderList, setOrderList] = useState([]);
+
+  useEffect(() => {
+    const getOrderList = async () => {
+      const response = await axios.get(
+        'https://app.fakejson.com/q/yXrzyVRD?token=ybH1QpWU68FqChnohPbqVA'
+      );
+      setOrderList(response.data.orders);
+    };
+    getOrderList();
+  }, []);
+
+  console.log('orderList', orderList);
   return (
-    <div>
+    <TableWrapper>
       <table className='table table-striped table-hover'>
         <thead>
           <tr className='table-heading'>
@@ -52,9 +28,9 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => {
+          {orderList.map((order) => {
             return (
-              <tr key={orders.orderId}>
+              <tr key={order.orderId}>
                 <td>
                   <span
                     className='fas fa-calendar-minus'
@@ -88,7 +64,7 @@ const Table = () => {
           })}
         </tbody>
       </table>
-    </div>
+    </TableWrapper>
   );
 };
 
